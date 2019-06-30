@@ -21559,7 +21559,7 @@ var Home = function Home() {
     _react2.default.createElement(
       "div",
       null,
-      "I'm the home component in SSR"
+      "I'm the home component in Server Side Rendering"
     ),
     _react2.default.createElement(
       "button",
