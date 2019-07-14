@@ -10,10 +10,12 @@ app.use(express.static('public'))
 
 app.get('*',(req, res) => {
   const store = createStore()
-  //some logic to initialize 
-  // and load data into the store
-  console.log(matchRoutes(Routes, req.path))
-  res.send(renderer(req, store))
+  const promises = matchRoutes(Routes, req.path).map(({route}) => (
+    route.loadData ?  route.loadData(store) : null
+  ))
+  Promise.all(promises).then(() => {
+    res.send(renderer(req, store))
+  })
 })
 
 app.listen(8888,() => {
