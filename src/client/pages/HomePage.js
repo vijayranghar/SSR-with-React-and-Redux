@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Home = () => {
+const Homepage = () => {
   return (
     <div>
       <div>I'm the home component in Server Side Rendering</div>
@@ -9,4 +9,6 @@ const Home = () => {
   )
 }
 
-export default Home
+export default {
+  component: Homepage
+}
