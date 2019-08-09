@@ -8,12 +8,15 @@ import renderer from './helper/renderer'
 import createStore from './helper/createStore'
 const app = express()
 
-app.get('/api', proxy('http://react-ssr-api.herokuapp.com'), {
-  proxyReqOptDecorator(opts) {
-    opts.header['x-forwared-hosts'] = 'localhost:3000'
-    return opts
-  }
-})
+app.use(
+  '/api', 
+  proxy('http://react-ssr-api.herokuapp.com', {
+    proxyReqOptDecorator(opts) {
+      opts.header['x-forwared-hosts'] = 'localhost:3000'
+      return opts
+    }
+  })
+)
 
 app.use(express.static('public'))
 
